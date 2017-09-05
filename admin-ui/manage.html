@@ -7,19 +7,27 @@
     <title>Fiap - que isso</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
+
+    <script src="https://unpkg.com/vue@2.4.2/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-resource@1.3.4/dist/vue-resource.min.js"></script>
+    <script src="./js/env.js"></script>    
 </head>
 <body>
 
 <nav class="nav has-shadow" id="top">
     <div class="container">
         <div class="nav-left">
-            <a class="nav-item" href="../index.html">
+            <a class="nav-item" href="">
                 fiap - que isso
             </a>
         </div>
     </div>
 </nav>
-<div class="container profile">
+<div id="app" class="container profile">
+
+    <div v-if="error" class="notification is-danger">              
+        {{error}}
+    </div>
 
     <div class="profile-options">
         <br>
@@ -52,17 +60,23 @@
     <div class="spacer"></div>
 
     <div class="columns is-multiline">
-        <div class="column is-one-quarter">
-            <div class="card">
+        
+        <div v-for="slide in slides" class="column is-one-quarter">
+            <div class="card">                
                 <div class="card-image">
-                    <figure class="image is-4by3">
-                        <img src="http://placehold.it/300x225" alt="">
+                    <div v-if="slide.type === 'text'" style="font-size: 135px; text-align: center; background-color: #ccc" class="is-4by3">
+                        {{slide.value}}
+                    </div>
+
+                    <figure v-if="slide.type === 'image'" class="image is-4by3">
+                        <img :src="slide.value" alt="">
                     </figure>
                 </div>
+
                 <div class="card-content">
                     <div class="content">
-                        <span class="tag is-dark">globo</span>
-                        <strong class="timestamp">é de casa</strong>
+                        <span class="tag is-dark">{{slide.name}}</span>
+                        <strong class="timestamp">{{slide.group}}</strong>
                     </div>
                 </div>
                 <footer class="card-footer">
@@ -71,83 +85,10 @@
             </div>
         </div>
 
-        <div class="column is-one-quarter">
-            <div class="card">
-                <div class="card-image">
-                    <div style="font-size: 135px; text-align: center; background-color: #ccc" class="is-4by3">
-                        A
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="content">
-                        <span class="tag is-dark">alfabeto</span>
-                        <strong class="timestamp">Letra A</strong>
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a class="card-footer-item">Delete</a>
-                </footer>
-            </div>
-        </div>
-
-        <div class="column is-one-quarter">
-            <div class="card">
-                <div class="card-image">
-                    <div style="font-size: 135px; text-align: center; background-color: #ccc" class="is-4by3">
-                        1
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="content">
-                        <span class="tag is-dark">numeros</span>
-                        <strong class="timestamp">Número 1</strong>
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a class="card-footer-item">Delete</a>
-                </footer>
-            </div>
-        </div>
-
-        <div class="column is-one-quarter">
-            <div class="card">
-                <div class="card-image">
-                    <div style="font-size: 135px; text-align: center; background-color: #ccc" class="is-4by3">
-                        A
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="content">
-                        <span class="tag is-dark">alfabeto</span>
-                        <strong class="timestamp">Letra A</strong>
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a class="card-footer-item">Delete</a>
-                </footer>
-            </div>
-        </div>
-
-        <div class="column is-one-quarter">
-            <div class="card">
-                <div class="card-image">
-                    <div style="font-size: 135px; text-align: center; background-color: #ccc" class="is-4by3">
-                        A
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="content">
-                        <span class="tag is-dark">alfabeto</span>
-                        <strong class="timestamp">Letra A</strong>
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a class="card-footer-item">Delete</a>
-                </footer>
-            </div>
-        </div>
+        
     </div>
 </div>
 
+<script src="./js/vue-manage.js"></script>
 </body>
 </html>

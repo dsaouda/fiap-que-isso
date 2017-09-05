@@ -18,15 +18,23 @@ func init()  {
 func main() {
 	router := gin.Default()
 
+	router.Use(middlewares.Cors)
 	router.Use(middlewares.Mgo)
 
-	router.POST("/login", cors, controllers.PostLogin)
-	router.OPTIONS("/login", cors)
+
+	router.POST("/login", controllers.PostLogin)
+	router.OPTIONS("/login")
+
+	authorized := router.Group("/slides")
+	authorized.Use(middlewares.Auth)
+	{
+		authorized.GET("", controllers.GetAllSlides)
+		authorized.OPTIONS("")
+	}
+
+
+
 	router.Run("localhost:8089")
 
 }
 
-func cors(c *gin.Context) {
-	c.Header("Access-Control-Allow-Origin", "*")
-	c.Header("Access-Control-Allow-Headers", "Content-Type, access-control-allow-origin, access-control-allow-headers, AnonymousToken")
-}

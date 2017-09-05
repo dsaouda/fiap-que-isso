@@ -12,10 +12,10 @@ var app = new Vue({
         login: function() {
             this.error = '';
             this.$http.post(baseURL('/login'), this.form).then(function(response) {
-                            
-                sessionStorage.setItem('token', response.body.token);
-                sessionStorage.setItem('email', response.body.email);
-                sessionStorage.setItem('id', response.body.id);
+                localStorage.setItem('token', response.body.token);
+                localStorage.setItem('email', response.body.email);
+                localStorage.setItem('id', response.body.id);
+                
                 window.location.href = '/manage.html';
 
             }).catch(function(response) {

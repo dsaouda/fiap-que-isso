@@ -5,6 +5,7 @@ import (
 	"github.com/dsaouda/fiap-que-isso/admin/models"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"net/http"
 )
 
 func PostLogin(c *gin.Context) {
@@ -19,10 +20,10 @@ func PostLogin(c *gin.Context) {
 	db.C("login").Find(bson.M{"email": login.Email, "password": login.Password}).One(&result)
 
 	if (models.Login{}) == result {
-		c.JSON(401, gin.H{"message": "Login e/ou senha não é válido"})
+		c.JSON(http.StatusUnauthorized, gin.H{"message": "Login e/ou senha não é válido"})
 		return
 	}
 
-	c.JSON(200, result)
+	c.JSON(http.StatusOK, result)
 }
 
