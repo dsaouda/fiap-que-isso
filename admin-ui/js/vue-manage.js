@@ -22,6 +22,15 @@ var app = new Vue({
             }).catch(function(response) {
                 this.error = response.body.message;
             });
+        },
+
+        deleteSlide: function(key, slide) {
+            this.error = '';
+            this.$http.delete(baseURL('/slides/' + slide.id)).then(function(response) {                
+                this.slides.splice(key, 1);
+            }).catch(function(response) {
+                this.error = response.body.message;
+            });
         }
     }
 });

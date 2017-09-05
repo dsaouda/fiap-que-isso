@@ -61,7 +61,7 @@
 
     <div class="columns is-multiline">
         
-        <div v-for="slide in slides" class="column is-one-quarter">
+        <div v-for="(slide, index) in slides" class="column is-one-quarter">
             <div class="card">                
                 <div class="card-image">
                     <div v-if="slide.type === 'text'" style="font-size: 135px; text-align: center; background-color: #ccc" class="is-4by3">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a class="card-footer-item">Delete</a>
+                    <a @click.prevent="deleteSlide(index, slide)" class="card-footer-item">Delete</a>
                 </footer>
             </div>
         </div>

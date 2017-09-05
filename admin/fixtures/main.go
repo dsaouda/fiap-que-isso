@@ -86,7 +86,7 @@ func main() {
 		models.Slide{Name:"Número 29", Type: "text",Value: "29", Group: "numero"},
 		models.Slide{Name:"Número 30", Type: "text",Value: "30", Group: "numero"},
 	}
-	
+
 	images := []Image{
 		//bancos
 		Image{"Banco do Brasil", "bancos/banco-do-brasil.png", "bancos"},
@@ -140,7 +140,7 @@ func main() {
 	}
 
 	for _, image := range images {
-		slide := models.Slide{image.Name, "image", "/images/" + image.Filename, image.Group}
+		slide := models.Slide{Name: image.Name, Type: "image", Value: "/images/" + image.Filename, Group: image.Group}
 		slides = append(slides, slide)
 	}
 

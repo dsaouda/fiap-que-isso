@@ -29,7 +29,9 @@ func main() {
 	authorized.Use(middlewares.Auth)
 	{
 		authorized.GET("", controllers.GetAllSlides)
+		authorized.DELETE("/:id", controllers.DeleteSlide)
 		authorized.OPTIONS("")
+		authorized.OPTIONS("/:id")
 	}
 
 
