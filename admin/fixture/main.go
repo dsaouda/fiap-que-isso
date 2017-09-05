@@ -3,8 +3,11 @@ package main
 import (
 	"fmt"
 	"github.com/dsaouda/fiap-que-isso/admin/fixture/util"
+	"github.com/dsaouda/fiap-que-isso/admin/models"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"crypto/md5"
+	"encoding/hex"
 )
 
 type Image struct {
@@ -13,77 +16,76 @@ type Image struct {
 	Group string
 }
 
-type Slide struct {
-	Name string
-	Type string
-	Value string
-	Group string
-}
-
-
 func main() {
 
-	slides := []Slide{
+	logins:= []models.Login{
+		models.NewLogin("dsaouda@gmail.com", "dsaouda"),
+		models.NewLogin("diegosaouda@gmail.com", "dsaouda"),
+		models.NewLogin("admin@admin", "dsaouda"),
+		models.NewLogin("root@root", "dsaouda"),
+	}
+
+	slides := []models.Slide{
 		//alfabeto
-		Slide{"Letra A", "text", "A", "alfabeto"},
-		Slide{"Letra B", "text", "B", "alfabeto"},
-		Slide{"Letra C", "text", "C", "alfabeto"},
-		Slide{"Letra D", "text", "D", "alfabeto"},
-		Slide{"Letra E", "text", "E", "alfabeto"},
-		Slide{"Letra F", "text", "F", "alfabeto"},
-		Slide{"Letra G", "text", "G", "alfabeto"},
-		Slide{"Letra H", "text", "H", "alfabeto"},
-		Slide{"Letra I", "text", "I", "alfabeto"},
-		Slide{"Letra J", "text", "J", "alfabeto"},
-		Slide{"Letra K", "text", "K", "alfabeto"},
-		Slide{"Letra L", "text", "L", "alfabeto"},
-		Slide{"Letra M", "text", "M", "alfabeto"},
-		Slide{"Letra N", "text", "N", "alfabeto"},
-		Slide{"Letra O", "text", "O", "alfabeto"},
-		Slide{"Letra P", "text", "P", "alfabeto"},
-		Slide{"Letra Q", "text", "Q", "alfabeto"},
-		Slide{"Letra R", "text", "R", "alfabeto"},
-		Slide{"Letra S", "text", "S", "alfabeto"},
-		Slide{"Letra T", "text", "T", "alfabeto"},
-		Slide{"Letra U", "text", "U", "alfabeto"},
-		Slide{"Letra V", "text", "V", "alfabeto"},
-		Slide{"Letra W", "text", "W", "alfabeto"},
-		Slide{"Letra X", "text", "X", "alfabeto"},
-		Slide{"Letra Y", "text", "Y", "alfabeto"},
-		Slide{"Letra Z", "text", "Z", "alfabeto"},
+		models.Slide{"Letra A", "text", "A", "alfabeto"},
+		models.Slide{"Letra B", "text", "B", "alfabeto"},
+		models.Slide{"Letra C", "text", "C", "alfabeto"},
+		models.Slide{"Letra D", "text", "D", "alfabeto"},
+		models.Slide{"Letra E", "text", "E", "alfabeto"},
+		models.Slide{"Letra F", "text", "F", "alfabeto"},
+		models.Slide{"Letra G", "text", "G", "alfabeto"},
+		models.Slide{"Letra H", "text", "H", "alfabeto"},
+		models.Slide{"Letra I", "text", "I", "alfabeto"},
+		models.Slide{"Letra J", "text", "J", "alfabeto"},
+		models.Slide{"Letra K", "text", "K", "alfabeto"},
+		models.Slide{"Letra L", "text", "L", "alfabeto"},
+		models.Slide{"Letra M", "text", "M", "alfabeto"},
+		models.Slide{"Letra N", "text", "N", "alfabeto"},
+		models.Slide{"Letra O", "text", "O", "alfabeto"},
+		models.Slide{"Letra P", "text", "P", "alfabeto"},
+		models.Slide{"Letra Q", "text", "Q", "alfabeto"},
+		models.Slide{"Letra R", "text", "R", "alfabeto"},
+		models.Slide{"Letra S", "text", "S", "alfabeto"},
+		models.Slide{"Letra T", "text", "T", "alfabeto"},
+		models.Slide{"Letra U", "text", "U", "alfabeto"},
+		models.Slide{"Letra V", "text", "V", "alfabeto"},
+		models.Slide{"Letra W", "text", "W", "alfabeto"},
+		models.Slide{"Letra X", "text", "X", "alfabeto"},
+		models.Slide{"Letra Y", "text", "Y", "alfabeto"},
+		models.Slide{"Letra Z", "text", "Z", "alfabeto"},
 
 		//números
-		Slide{"Número 0", "text", "0", "numero"},
-		Slide{"Número 1", "text", "1", "numero"},
-		Slide{"Número 2", "text", "2", "numero"},
-		Slide{"Número 3", "text", "3", "numero"},
-		Slide{"Número 4", "text", "4", "numero"},
-		Slide{"Número 5", "text", "5", "numero"},
-		Slide{"Número 6", "text", "6", "numero"},
-		Slide{"Número 7", "text", "7", "numero"},
-		Slide{"Número 8", "text", "8", "numero"},
-		Slide{"Número 9", "text", "9", "numero"},
-		Slide{"Número 10", "text", "10", "numero"},
-		Slide{"Número 11", "text", "11", "numero"},
-		Slide{"Número 12", "text", "12", "numero"},
-		Slide{"Número 13", "text", "13", "numero"},
-		Slide{"Número 14", "text", "14", "numero"},
-		Slide{"Número 15", "text", "15", "numero"},
-		Slide{"Número 16", "text", "16", "numero"},
-		Slide{"Número 17", "text", "17", "numero"},
-		Slide{"Número 18", "text", "18", "numero"},
-		Slide{"Número 19", "text", "19", "numero"},
-		Slide{"Número 20", "text", "20", "numero"},
-		Slide{"Número 21", "text", "21", "numero"},
-		Slide{"Número 22", "text", "22", "numero"},
-		Slide{"Número 23", "text", "23", "numero"},
-		Slide{"Número 24", "text", "24", "numero"},
-		Slide{"Número 25", "text", "25", "numero"},
-		Slide{"Número 26", "text", "26", "numero"},
-		Slide{"Número 27", "text", "27", "numero"},
-		Slide{"Número 28", "text", "28", "numero"},
-		Slide{"Número 29", "text", "29", "numero"},
-		Slide{"Número 30", "text", "30", "numero"},
+		models.Slide{"Número 0", "text", "0", "numero"},
+		models.Slide{"Número 1", "text", "1", "numero"},
+		models.Slide{"Número 2", "text", "2", "numero"},
+		models.Slide{"Número 3", "text", "3", "numero"},
+		models.Slide{"Número 4", "text", "4", "numero"},
+		models.Slide{"Número 5", "text", "5", "numero"},
+		models.Slide{"Número 6", "text", "6", "numero"},
+		models.Slide{"Número 7", "text", "7", "numero"},
+		models.Slide{"Número 8", "text", "8", "numero"},
+		models.Slide{"Número 9", "text", "9", "numero"},
+		models.Slide{"Número 10", "text", "10", "numero"},
+		models.Slide{"Número 11", "text", "11", "numero"},
+		models.Slide{"Número 12", "text", "12", "numero"},
+		models.Slide{"Número 13", "text", "13", "numero"},
+		models.Slide{"Número 14", "text", "14", "numero"},
+		models.Slide{"Número 15", "text", "15", "numero"},
+		models.Slide{"Número 16", "text", "16", "numero"},
+		models.Slide{"Número 17", "text", "17", "numero"},
+		models.Slide{"Número 18", "text", "18", "numero"},
+		models.Slide{"Número 19", "text", "19", "numero"},
+		models.Slide{"Número 20", "text", "20", "numero"},
+		models.Slide{"Número 21", "text", "21", "numero"},
+		models.Slide{"Número 22", "text", "22", "numero"},
+		models.Slide{"Número 23", "text", "23", "numero"},
+		models.Slide{"Número 24", "text", "24", "numero"},
+		models.Slide{"Número 25", "text", "25", "numero"},
+		models.Slide{"Número 26", "text", "26", "numero"},
+		models.Slide{"Número 27", "text", "27", "numero"},
+		models.Slide{"Número 28", "text", "28", "numero"},
+		models.Slide{"Número 29", "text", "29", "numero"},
+		models.Slide{"Número 30", "text", "30", "numero"},
 	}
 
 
@@ -142,26 +144,44 @@ func main() {
 	for _, image := range images {
 		base64 := util.ImageToBase64(image.Filename)
 
-		slide := Slide{image.Name, "image", base64, image.Group}
+		slide := models.Slide{image.Name, "image", base64, image.Group}
 		slides = append(slides, slide)
 	}
 
 	session, _ := mgo.Dial("192.168.33.10")
 	defer session.Close()
 
-	c := session.DB("fiap-que-isso").C("slide")
+	db := session.DB("fiap_que_isso")
+
+	cSlide := db.C("slide")
+	cLogin := db.C("login")
 
 	for _, slide := range slides {
+		result := models.Slide{}
+		cSlide.Find(bson.M{"name": slide.Name, "group": slide.Group}).One(&result)
 
-		result := Slide{}
-		c.Find(bson.M{"name": slide.Name, "group": slide.Group}).One(&result)
-
-		if (Slide{}) != result {
+		if (models.Slide{}) != result {
 			continue
 		}
 
 		fmt.Println("Criando slide", slide.Name, "grupo", slide.Group)
-		c.Insert(&slide)
+		cSlide.Insert(&slide)
+	}
+
+	for _, login := range logins {
+			result := models.Login{}
+			cLogin.Find(bson.M{"email": login.Email}).One(&result)
+
+			if (models.Login{}) != result {
+				continue
+			}
+
+		hasher := md5.New()
+		hasher.Write([]byte(login.Email + login.Password))
+		login.Token = hex.EncodeToString(hasher.Sum(nil))
+
+		fmt.Println("Criando login", login.Email)
+		cLogin.Insert(&login)
 	}
 }
 

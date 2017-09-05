@@ -63,9 +63,13 @@
             padding: 5px;
         }
     </style>
+
+    <script src="https://unpkg.com/vue@2.4.2/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-resource@1.3.4/dist/vue-resource.min.js"></script>
+    <script src="./js/env.js"></script>    
 </head>
 <body>
-<div class="login-wrapper columns">
+<div id="app" class="login-wrapper columns">
     <div class="column is-8 is-hidden-mobile hero-banner">
         <section class="hero is-fullheight is-dark">
             <div class="hero-body">
@@ -85,25 +89,29 @@
     <div class="column is-4">
         <section class="hero is-fullheight">
 
+            <div v-if="error" class="notification is-danger">              
+                {{error}}
+            </div>
+
             <div class="hero-body">
                 <div class="container">
                     <div class="columns">
                         <div class="column is-8 is-offset-2">
                             <div class="login-form">
                                 <p class="control has-icon has-icon-right">
-                                    <input class="input email-input" type="text" placeholder="admin@test.com">
+                                    <input v-model.lazy="form.email" class="input email-input" type="text" placeholder="Seu e-mail">
                                     <span class="icon user">
                                  <i class="fa fa-user"></i>
                                  </span>
                                 </p>
                                 <p class="control has-icon has-icon-right">
-                                    <input class="input password-input" type="password" placeholder="******">
+                                    <input v-model.lazy="form.password" class="input password-input" type="password" placeholder="Sua senha">
                                     <span class="icon user">
                                  <i class="fa fa-lock"></i>
                                  </span>
                                 </p>
                                 <p class="control login">
-                                    <button class="button is-success is-outlined is-large is-fullwidth">Login</button>
+                                    <button @click.prevent="login()" class="button is-success is-outlined is-large is-fullwidth">Login</button>
                                 </p>
                             </div>
                         </div>
@@ -113,5 +121,7 @@
         </section>
     </div>
 </div>
+
+<script src="./js/vue-index.js"></script>
 </body>
 </html>
