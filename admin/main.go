@@ -25,16 +25,22 @@ func main() {
 	router.POST("/login", controllers.PostLogin)
 	router.OPTIONS("/login")
 
-	authorized := router.Group("/slides")
-	authorized.Use(middlewares.Auth)
+
+	r := router.Group("/slides")
+	r.Use(middlewares.Auth)
 	{
-		authorized.GET("", controllers.GetAllSlides)
-		authorized.DELETE("/:id", controllers.DeleteSlide)
-		authorized.OPTIONS("")
-		authorized.OPTIONS("/:id")
+		r.GET("", controllers.GetAllSlides)
+		r.DELETE("/:id", controllers.DeleteSlide)
+		r.OPTIONS("")
+		r.OPTIONS("/:id")
 	}
 
+	r = router.Group("/groups")
 
+	{
+		r.GET("", controllers.GetAllGroups)
+		r.OPTIONS("")
+	}
 
 	router.Run("localhost:8089")
 

@@ -15,7 +15,7 @@ var (
 
 const (
 	//conexão padrão mongo db
-	Url = "mongodb://192.168.33.10:27017/fiap_que_isso"
+	Url = "mongodb://192.168.200.30:27017/fiap_que_isso"
 )
 
 func url() string {

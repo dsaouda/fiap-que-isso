@@ -18,7 +18,8 @@
     <div class="container">
         <div class="nav-left">
             <a class="nav-item" href="">
-                fiap - que isso
+                <img src="/images/internt_web_technology-06-128.png" />
+                &nbsp; fiap - que isso
             </a>
         </div>
     </div>
@@ -41,13 +42,14 @@
                     <div class="field has-addons">
                         <div class="control">
                             <div class="select">
-                                <select>
-                                    <option>Todos</option>
+                                <select v-model.lazy="selectGroup">
+                                    <option value="todos">Todos</option>
+                                    <option v-for="group in groups" :value="group">{{group}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="control">
-                            <a class="button is-info">
+                            <a @click.prevent="filtrar()" class="button is-info">
                                 Exibir grupos
                             </a>
                         </div>

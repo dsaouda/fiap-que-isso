@@ -8,4 +8,5 @@ type Slide struct {
 	Type string `json:"type"`
 	Value string `json:"value"`
 	Group string `json:"group"`
+	Order int `json:"order"`
 }

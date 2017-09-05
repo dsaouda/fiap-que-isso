@@ -17,18 +17,19 @@ func DeleteSlide(c *gin.Context) {
 }
 
 func GetAllSlides(c *gin.Context) {
-	var results []models.Slide
-
-	group := c.Query("q")
-
 	db := c.MustGet("db").(*mgo.Database)
 	collection := db.C("slide")
 
+	group := c.Query("q")
+	where := bson.M{}
+
 	if group != "" {
-		collection.Find(bson.M{"group": group}).All(&results)
-	} else {
-		collection.Find(nil).Sort("group", "name", "value").All(&results)
+		where = bson.M{"group": group}
 	}
+
+	var results []models.Slide
+	collection.Find(where).Sort("group", "order").All(&results)
+
 
 	c.JSON(http.StatusOK, results)
 }

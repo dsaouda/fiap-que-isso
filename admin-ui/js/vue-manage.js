@@ -2,7 +2,9 @@ var app = new Vue({
     el: '#app',
     data: {
         error: '',
-        slides: []
+        slides: [],
+        groups: [],
+        selectGroup: 'todos'
     },
 
     created: function() {
@@ -11,13 +13,40 @@ var app = new Vue({
             next();
         });
         
-        this.fetchAllSlides();
+        this.fetchAllGroups();
+        this.fetchAllSlides({});
+    },
+
+    watch: {
+    	selectGroup: function() {
+    		console.log(this.selectGroup);
+    	}
     },
 
     methods: {
-        fetchAllSlides: function() {
+
+    	filtrar: function() {
+    		var params = {params: {q: this.selectGroup}};
+
+    		if (this.selectGroup === 'todos') {
+    			params = {};
+    		}
+
+    		this.fetchAllSlides(params);
+    	},
+
+    	fetchAllGroups: function() {
             this.error = '';
-            this.$http.get(baseURL('/slides')).then(function(response) {
+            this.$http.get(baseURL('/groups')).then(function(response) {
+                this.groups = response.body;
+            }).catch(function(response) {
+                this.error = response.body.message;
+            });
+        },
+
+        fetchAllSlides: function(params) {
+            this.error = '';
+            this.$http.get(baseURL('/slides'), params).then(function(response) {
                 this.slides = response.body;
             }).catch(function(response) {
                 this.error = response.body.message;
@@ -25,6 +54,11 @@ var app = new Vue({
         },
 
         deleteSlide: function(key, slide) {
+
+        	if (!confirm("Tem certeza que deseja remover esse card?")) {
+        		return ;
+        	}
+
             this.error = '';
             this.$http.delete(baseURL('/slides/' + slide.id)).then(function(response) {                
                 this.slides.splice(key, 1);
