@@ -8,6 +8,9 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
       
+      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.7.1/slick/slick.css"/>      
+      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.7.1/slick/slick-theme.css"/>
+
       <style>
          html, body {
             background-color: #eee;
@@ -52,19 +55,45 @@
             </h2>
          </div>
          
-         <div class="section">
-            <div class="status-header">
-               <div class="indicator"></div>
-               <div class="title">All services are online.</div>
-               <div class="subtitle">As of August 1, 2016 at 11:08PM MST.</div>
+         <div class="section" id="app">
+            
+            <div class="control">
+              <div class="select">
+                <select v-model.lazy="selectGroup">
+                  <option value="">Selecione um tema</option>
+                  <option :value="group" v-for="group in groups">{{group}}</option>
+                </select>
+              </div>
             </div>
-            <div>
-               
+
+            <div class="slider" data-slick='{"slidesToShow": 1, "slidesToScroll": 1}'>                
+                
             </div>
+
+
+            <div style="display: none;">
+              <div id="vue-template">
+                <div v-for="card in cards" style="padding: 10px;">
+                  <br>
+                  <div class="subtitle">
+                    {{card.name}}
+                  </div>
+                  <img :src="baseUrlImg(card.value)" />              
+                </div>
+              </div>
+            </div>
+
          </div>
+         
+      </div>    
 
-         <div></div>
-      </div>
+      
 
+      <script src="https://unpkg.com/vue@2.4.2/dist/vue.min.js"></script>
+      <script src="https://unpkg.com/vue-resource@1.3.4/dist/vue-resource.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.7.1/slick/slick.min.js"></script>  
+      <script src="./js/env.js"></script>
+      <script src="./js/vue-index.js"></script>
    </body>
 </html>

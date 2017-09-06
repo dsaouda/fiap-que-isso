@@ -11,6 +11,15 @@ use Zend\Stratigility\Middleware\ErrorHandler;
  * Setup middleware pipeline:
  */
 
+$app->pipe(new \Tuupola\Middleware\Cors([
+    'origin' => ['*'],
+    'methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    'headers.allow' => ['Authorization', 'If-Match', 'If-Unmodified-Since'],
+    'headers.expose' => ['Etag'],
+    'credentials' => true,
+    'cache' => 86400
+]));
+
 // The error handler should be the first (most outer) middleware to catch
 // all Exceptions.
 $app->pipe(ErrorHandler::class);

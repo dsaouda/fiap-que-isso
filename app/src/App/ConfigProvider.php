@@ -2,21 +2,11 @@
 
 namespace App;
 
-/**
- * The configuration provider for the App module
- *
- * @see https://docs.zendframework.com/zend-component-installer/
- */
+use App\Factory\MongoFactory;
+
 class ConfigProvider
 {
-    /**
-     * Returns the configuration array
-     *
-     * To add a bit of a structure, each section is defined in a separate
-     * method which returns an array with its configuration.
-     *
-     * @return array
-     */
+
     public function __invoke()
     {
         return [
@@ -25,29 +15,19 @@ class ConfigProvider
         ];
     }
 
-    /**
-     * Returns the container dependencies
-     *
-     * @return array
-     */
     public function getDependencies()
     {
         return [
             'invokables' => [
-                Action\GroupsAction::class => Action\GroupsAction::class,
-                Action\CardsAction::class => Action\CardsAction::class,
             ],
             'factories'  => [
-                Action\HomePageAction::class => Action\HomePageFactory::class,
+                MongoFactory::class => MongoFactory::class,
+                Action\CardsAction::class => Factory\CardsFactory::class,
+                Action\GroupsAction::class => Factory\GroupsFactory::class,
             ],
         ];
     }
 
-    /**
-     * Returns the templates configuration
-     *
-     * @return array
-     */
     public function getTemplates()
     {
         return [

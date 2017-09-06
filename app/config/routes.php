@@ -26,6 +26,5 @@
  * );
  */
 
-$app->get('/', App\Action\HomePageAction::class, 'home');
 $app->get('/groups', App\Action\GroupsAction::class, 'groups');
 $app->get('/cards', App\Action\CardsAction::class, 'cards');
