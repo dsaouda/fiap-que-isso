@@ -41,6 +41,10 @@
            display: block;
            margin-left: 35px;
          }
+         .card-letra {
+         	font-size: 200px;
+         	text-align: center;
+         }
 
       </style>
 
@@ -78,7 +82,10 @@
                   <div class="subtitle">
                     {{card.name}}
                   </div>
-                  <img :src="baseUrlImg(card.value)" />              
+                  
+                  <img v-if="card.type === 'image'" :src="baseUrlImg(card.value)" /> 
+                  <div class="card-letra" v-if="card.type === 'text'">{{card.value}}</div>	
+
                 </div>
               </div>
             </div>
