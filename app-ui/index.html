@@ -62,12 +62,23 @@
          <div class="section" id="app">
             
             <div class="control">
+
               <div class="select">
                 <select v-model.lazy="selectGroup">
                   <option value="">Selecione um tema</option>
+                  <option value="todos">Todos</option>
                   <option :value="group" v-for="group in groups">{{group}}</option>
                 </select>
               </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <label class="checkbox">
+				  <input v-model.lazy="checkboxEmbaralhar" type="checkbox">
+				  Embaralhar
+			  </label>	
+			  &nbsp;&nbsp;&nbsp;&nbsp;
+			  <a @click.prevent="fetchAllCards" class="button is-primary">
+				Iniciar
+			  </a>
             </div>
 
             <div class="slider" data-slick='{"slidesToShow": 1, "slidesToScroll": 1}'>                

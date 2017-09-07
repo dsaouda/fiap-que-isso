@@ -5,7 +5,8 @@ var app = new Vue({
     data: {
        cards: [],
        groups: [],
-       selectGroup: ''
+       selectGroup: '',
+       checkboxEmbaralhar: false
     },
 
     created: function() {
@@ -13,9 +14,7 @@ var app = new Vue({
     },
 
     watch: {
-        selectGroup: function() {
-            this.fetchAllCards();            
-        }
+        selectGroup: function() {}
     },
 
     computed: {},
@@ -38,7 +37,15 @@ var app = new Vue({
     methods: {
 
         fetchAllCards: function() {
-            this.$http.get(baseUrlApp('/cards'), {params: {q: this.selectGroup}}).then(function(response) {
+
+            var params = this.selectGroup === 'todos' ? {params: {m: this.checkboxEmbaralhar } } : {
+                params: {
+                    q: this.selectGroup,
+                    m: this.checkboxEmbaralhar
+                }
+            };    
+
+            this.$http.get(baseUrlApp('/cards'), params).then(function(response) {
                 this.cards = response.body;                
             });
         },

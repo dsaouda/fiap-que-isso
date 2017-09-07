@@ -23,12 +23,21 @@ class CardsAction implements ServerMiddlewareInterface
     public function process(ServerRequestInterface $request, DelegateInterface $delegate): JsonResponse
     {
         $q = $request->getQueryParams()['q'] ?? null;
+        $m = ($request->getQueryParams()['m'] ?? null) === 'true' ? true : false;
+        
         $filter = $q  ? ['group' => $q] : [];
 
         $options = ['sort' => ['group' => 1, 'order' => 1]];
         $query = new \MongoDB\Driver\Query($filter, $options);
     	
 		$cursor = $this->mongo->executeQuery('fiap_que_isso.slide', $query);
-        return new JsonResponse($cursor->toArray());
+
+        $result = $cursor->toArray();
+        if ($m) {
+            shuffle($result);
+        }
+
+
+        return new JsonResponse($result);
     }
 }
