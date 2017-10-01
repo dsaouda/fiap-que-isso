@@ -1,6 +1,6 @@
 # docker
 
-```docker run --rm -p 8090:8090 -v /home/rancher/php:/root -w /root dsaouda/php bash -c 'cd app && git pull origin master && composer update && php -S 0.0.0.0:8090 -t public'
+```docker run --rm -p 8090:8090 -v /home/rancher/php:/root -w /root dsaouda/php bash -c 'cd app && git pull origin master && composer update && php -S 0.0.0.0:8090 -t public'```
 
 # Configurando o build shell do Jenkins para atualizar o Rancher
 
