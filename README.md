@@ -14,6 +14,19 @@ Aplicação que tem como objetivo ser um joguinho para meu filho que adora brinc
  4. No host1 estão o rancher server, jenkins, gogs, mongodb e as aplicações frontend do fiap-queisso
  5. No host 2 estão os microservices api do fiap-queisso
  
- # Videos de como funciona
+ ## Veja funcionando
  
- [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/u8OSpYwDPzQ/0.jpg)](https://www.youtube.com/watch?v=u8OSpYwDPzQ)
+ [![Video](https://img.youtube.com/vi/u8OSpYwDPzQ/1.jpg)](https://www.youtube.com/watch?v=u8OSpYwDPzQ)
+ 
+ [![Video](https://img.youtube.com/vi/dM3TeF-gw9o/1.jpg)](https://www.youtube.com/watch?v=dM3TeF-gw9o)
+ 
+ [![Video](https://img.youtube.com/vi/KBkPIVhtmWM/1.jpg)](https://www.youtube.com/watch?v=KBkPIVhtmWM)
+ 
+ ## Homologação
+ 
+ [![Video](https://img.youtube.com/vi/TxLt-XcGhao/1.jpg)](https://www.youtube.com/watch?v=TxLt-XcGhao)
+ 
+ [![Video](https://img.youtube.com/vi/1VrhxSVu948/1.jpg)](https://www.youtube.com/watch?v=1VrhxSVu948)
+ 
+ 
+ 
