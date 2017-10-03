@@ -15,7 +15,7 @@ O rancher os pode ser baixado no link https://github.com/rancher/os/releases/dow
 
 ## Instalando o rancher gerenciador de container
 
-1. depois de instalando o rancher os, acesse via SSH apontando para sua chave privada (ssh -i <chave> <usuario>@<host>)
+1. depois de instalando o rancher os, acesse via SSH apontando para sua chave privada (`ssh -i <chave> <usuario>@<host>`)
 2. execute `docker run -d --restart=unless-stopped -p 8080:8080 rancher/server`
 
 ## gerando chave pública e privada com ssh-keygen
