@@ -1,6 +1,7 @@
 # instalando o rancher os
 
 Seguir guia de instalação em http://rancher.com/docs/os/v1.1/en/running-rancheros/server/install-to-disk/
+
 O rancher os pode ser baixado no link https://github.com/rancher/os/releases/download/v1.1.0/rancheros.iso
 
 ## Passo a passo simplificado
