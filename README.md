@@ -24,9 +24,9 @@ Aplicação que tem como objetivo ser um joguinho para meu filho que adora brinc
  
  ## Homologação
  
- [![Video](https://img.youtube.com/vi/TxLt-XcGhao/1.jpg)](https://www.youtube.com/watch?v=TxLt-XcGhao)
+ [![Video](https://img.youtube.com/vi/UV8O1PpJBFw/1.jpg)](https://www.youtube.com/watch?v=UV8O1PpJBFw)
  
- [![Video](https://img.youtube.com/vi/1VrhxSVu948/1.jpg)](https://www.youtube.com/watch?v=1VrhxSVu948)
+ [![Video](https://img.youtube.com/vi/0yoVkc4-5yI/1.jpg)](https://www.youtube.com/watch?v=0yoVkc4-5yI)
  
  
  
