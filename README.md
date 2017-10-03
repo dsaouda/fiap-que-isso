@@ -20,7 +20,7 @@ Aplicação que tem como objetivo ser um joguinho para meu filho que adora brinc
  [![Video](https://img.youtube.com/vi/dM3TeF-gw9o/1.jpg)](https://www.youtube.com/watch?v=dM3TeF-gw9o) 
  [![Video](https://img.youtube.com/vi/KBkPIVhtmWM/1.jpg)](https://www.youtube.com/watch?v=KBkPIVhtmWM)
  
- ## Homologação
+ ## Cliente usando o sistema
  
  [![Video](https://img.youtube.com/vi/UV8O1PpJBFw/1.jpg)](https://www.youtube.com/watch?v=UV8O1PpJBFw) 
  [![Video](https://img.youtube.com/vi/0yoVkc4-5yI/1.jpg)](https://www.youtube.com/watch?v=0yoVkc4-5yI)
